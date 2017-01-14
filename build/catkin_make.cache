@@ -1,0 +1,2 @@
+mrsd_ros_tutorials
+-DCATKIN_DEVEL_PREFIX=/home/jin/ros/mrsd_ros_example/devel -DCMAKE_INSTALL_PREFIX=/home/jin/ros/mrsd_ros_example/install -G Unix Makefiles

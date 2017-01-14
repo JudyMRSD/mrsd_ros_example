@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/jin/ros/mrsd_ros_example/devel/setup.sh
