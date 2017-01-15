@@ -26,6 +26,8 @@ class ImageConverter
   image_transport::Subscriber kinect_img_sub;
 
 public:
+  int i;
+
   ImageConverter()
     : it_(nh_)
   {
@@ -43,7 +45,7 @@ public:
   }
   /* @brief Subscriber callback for an image
   */
-  void imageCb(const sensor_msgs::ImageConstPtr& msg)
+  void imageCb(const sensor_msgs::ImageConstPtr& msg, int i)
   {
     //cv_bridge::CvImagePtr cv_ptr;
     cv_bridge::CvImagePtr kinect_color_raw;
@@ -62,7 +64,7 @@ public:
 
 
     //do_really_cool_stuff(cv_ptr);
-    do_really_cool_stuff(kinect_color_raw);
+    do_really_cool_stuff(kinect_color_raw, i);
     //image_pub_.publish(cv_ptr->toImageMsg());
      
   }
@@ -72,7 +74,7 @@ public:
    *  to lower right.  The color is hardcoded.
    *  @param cv_ptr Image to paint circles over
    */        
-  void do_really_cool_stuff(cv_bridge::CvImagePtr kinect_color_raw)
+  void do_really_cool_stuff(cv_bridge::CvImagePtr kinect_color_raw, int i)
   {
 
 //save images
@@ -85,6 +87,13 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "image_converter");
   ImageConverter ic;
-  ros::spin();
+  ic.i = 0;
+  ros::Rate loop_rate(10);
+  while (ros::ok())
+    {
+      ros::spinOnce();
+      loop_rate.sleep();
+  }
+
   return 0;
 }
