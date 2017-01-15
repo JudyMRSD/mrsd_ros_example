@@ -10,11 +10,6 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-
-
-
-
-
 /** @brief Handles image pub/sub and painting circles (demo of a in-source class)
 */
 class ImageConverter
@@ -84,7 +79,7 @@ public:
 
     std::string name = std::to_string(i); 
     name = name + ".jpg";
-	 cv::imwrite(name, kinect_color_raw->image);
+	  cv::imwrite(name, kinect_color_raw->image);
     // End Do really cool stuff ********************************************
   }
 };
@@ -93,12 +88,13 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "image_converter");
   ImageConverter ic;
-  ros::Rate loop_rate(10);
-  while (ros::ok())
+  
+  while(ros::ok())
     {
-      ros::spinOnce();
-      loop_rate.sleep();
-  }
-
+        ros::Duration(1).sleep();
+        ros::spinOnce();
+    }
+    
+  
   return 0;
 }
